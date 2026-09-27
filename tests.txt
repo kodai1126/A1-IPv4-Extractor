@@ -1,0 +1,49 @@
+IPv4 Parser Test Cases
+
+1. Input: 192.168.1.1
+   Expected: valid
+   Result: PASS
+
+2. Input: 192.168.01.1
+   Expected: invalid because of leading zero
+   Result: PASS
+
+3. Input: 256.1.1.1
+   Expected: invalid because octet > 255
+   Result: PASS
+
+4. Input: 1.2.3.4:65535
+   Expected: valid with port 65535
+   Result: PASS
+
+5. Input: 1.2.3.4:65536
+   Expected: invalid because port > 65535
+   Result: PASS
+
+6. Input: 1.2.3.4:
+   Expected: invalid because port is missing
+   Result: PASS
+
+7. Input: 1.2.3.4.5
+   Expected: invalid because of extra period/octet
+   Result: PASS
+
+8. Input: 1.2.3.4:80:90
+   Expected: invalid because of second colon
+   Result: PASS
+
+9. Input: abc1.2.3.4xyz
+   Expected: valid; unrelated letters are skipped
+   Result: PASS
+
+10. Input: 192a168.1.1.1
+    Expected: valid address 168.1.1.1
+    Result: PASS
+
+11. Input: 0.0.0.0:0
+    Expected: valid with port 0
+    Result: PASS
+
+12. Input: 255.255.255.255:65535
+    Expected: valid maximum IPv4 and port values
+    Result: PASS
