@@ -149,10 +149,11 @@ int main()
     string input;
 
     while (true) {
-        cout << "Enter a line (or END to quit): ";
+        cout << "Enter a string (or 'END' to quit): ";
         getline(cin, input);
 
         if (input == "END") {
+            cout << "Program terminated." << endl;
             break;
         }
 
@@ -161,36 +162,32 @@ int main()
 
         if (extractIPv4(input, address, port)) {
 
-            cout << "Valid IPv4 address found." << endl;
-
-            // Convert the 32-bit value back into octets
-            // only for display.
             unsigned long a = (address >> 24) & 255;
             unsigned long b = (address >> 16) & 255;
             unsigned long c = (address >> 8) & 255;
             unsigned long d = address & 255;
 
-            cout << "Address: "
+            cout << "Extracted IPv4 address: "
                  << a << "."
                  << b << "."
                  << c << "."
-                 << d << endl;
-
-            cout << "32-bit decimal value: "
-                 << address << endl;
+                 << d
+                 << " (decimal value: "
+                 << address
+                 << ", port: ";
 
             if (port == -1) {
-                cout << "Port: none" << endl;
+                cout << "none";
             }
             else {
-                cout << "Port: " << port << endl;
+                cout << port;
             }
+
+            cout << ")" << endl;
         }
         else {
-            cout << "No valid IPv4 address was found." << endl;
+            cout << "Invalid input: no valid IPv4 address found" << endl;
         }
-
-        cout << endl;
     }
 
     return 0;
